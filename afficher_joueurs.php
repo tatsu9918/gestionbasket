@@ -14,7 +14,10 @@
         <th>Date de naissance</th>
         <th>Taille</th>
         <th>Poids</th>
+        <th>Poste préféré</th>
         <th>Statut</th>
+        <th>Commmentaire</th>
+        <th>Actions</th>
     </tr>
     <?php
         $res= $linkpdo->prepare("SELECT * FROM joueurs");
@@ -45,11 +48,17 @@
                     <input type="text" name="Poids" value="<?php echo $data['Poids']; ?>">
                 </td>
                 <td>
+                    <input type="text" name="Poste_pref" value="<?php echo $data['Poste_pref']; ?>">
+                </td>
+                <td>
                     <input type="text" name="Statut" value="<?php echo $data['Statut']; ?>">
                 </td>
                 <td>
+                    <input type="text" name="Commentaire" value="<?php echo $data['Commentaire']; ?>">
+                </td>
+                <td>
                     <button type="submit" name="update" value="update">Modifier</button>
-                    <button type="submit" name="delete" value="update">Supprimer</button>
+                    <button type="submit" name="delete" value="delete">Supprimer</button>
                 </td>
             </tr>
         </form>
@@ -63,8 +72,10 @@
             $dateNaissance = $_POST["DateNaissance"];
             $taille = $_POST["Taille"];
             $poids = $_POST["Poids"];
+            $Poste_pref = $_POST["Poste_pref"];
             $statut = $_POST["Statut"];
-            $res= $linkpdo->prepare('UPDATE joueurs SET Nom = :nom, Prenom = :prenom, Photo = :photo, NumLicence = :numLicence, DateNaissance = :dateNaissance, Taille = :taille, Poids = :poids, Statut = :statut WHERE NumLicence = :numLicence');
+            $commentaire = $_POST["Commentaire"];
+            $res= $linkpdo->prepare('UPDATE joueurs SET Nom = :nom, Prenom = :prenom, Photo = :photo, NumLicence = :numLicence, DateNaissance = :dateNaissance, Taille = :taille, Poids = :poids, Poste_pref = :Poste_pref, Statut = :statut, Commentaire = :commentaire WHERE NumLicence = :numLicence');
             $res->bindParam(':nom', $nom);
             $res->bindParam(':prenom', $prenom);
             $res->bindParam(':photo', $photo);
@@ -72,26 +83,84 @@
             $res->bindParam(':dateNaissance', $dateNaissance);
             $res->bindParam(':taille', $taille);
             $res->bindParam(':poids', $poids);
+            $res->bindParam(':Poste_pref', $Poste_pref);
             $res->bindParam(':statut', $statut);
+            $res->bindParam(':commentaire', $commentaire);
             if($res->execute()){
             echo "La requête a été exécutée avec succès";
-            }else{
-            $res->DebugDumpParams();
-            echo "La requête a échouée";
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            } else {
+            echo "La requête n'a pas été exécutée avec succès";
             }
             }
             if(isset($_POST['delete'])) {
-                $numLicence = $_POST["NumLicence"];
-                $res= $linkpdo->prepare('DELETE FROM joueurs WHERE NumLicence = :numLicence');
-                $res->bindParam(':numLicence', $numLicence);
-                if($res->execute()){
-                echo "La requête a été exécutée avec succès";
-                }else{
-                $res->DebugDumpParams();
-                echo "La requête a échouée";
-                }
-                }
-                
+            $numLicence = $_POST["NumLicence"];
+            $res= $linkpdo->prepare('DELETE FROM joueurs WHERE NumLicence = :numLicence');
+            $res->bindParam(':numLicence', $numLicence);
+            if($res->execute()){
+            echo "La requête a été exécutée avec succès";
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            } else {
+            echo "La requête n'a pas été exécutée avec succès";
+            }
+            }
             ?>
             
             </table>
+            
+            
+<style>
+table {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #dddddd;
+}
+
+.center {
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    /* padding: 12px 20px; */
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    /* cursor: pointer; */
+}
+
+button[name="update"] {
+    background-color: #4CAF50;
+}
+
+button[name="delete"] {
+    background-color: #f44336;
+}
+button[name="delete"]:hover {
+    background-color: #9b1107;
+}
+
+button[name="update"]:hover {
+    background-color: #45a049;
+}
+</style>
