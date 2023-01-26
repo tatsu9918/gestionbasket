@@ -1,8 +1,9 @@
 <nav>
     <ul>
         <li><a href="home.php">Accueil</a></li>
-        <li><a href="profil.php">Profil</a></li>
-        <li><a href="settings.php">Paramètres</a></li>
+        <li><a href="feuillematch.php">Feuille de match</a></li>
+        <li><a href="match.php">Match</a></li>
+        <li><a href="">Statistiques</a></li>
         <li><a href="logout.php">Déconnexion</a></li>
     </ul>
 </nav>
