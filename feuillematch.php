@@ -8,13 +8,13 @@
 <form action="update_roles.php" method="post">
     <table border="1">
         <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
             <th>Photo</th>
             <th>Taille</th>
             <th>Poids</th>
             <th>Poste préféré</th>
-            <th>Statut</th>
             <th>Commmentaire</th>
-            <th>Evaluations de l'entraineur</th>
             <th>Actions</th>  
         </tr>
         <?php
@@ -23,66 +23,74 @@
             $res->execute();
             while ($data = $res->fetch()) {
                 echo "<tr>";
-                echo "<td>" . $data['photo'] . "</td>";
-                echo "<td>" . $data['taille'] . "</td>";
-                echo "<td>" . $data['poids'] . "</td>";
-                echo "<td>" . $data['poste_prefere'] . "</td>";
-                echo "<td>" . $data['statut'] . "</td>";
-                echo "<td>" . $data['commentaire'] . "</td>";
-                echo "<td>" . $data['evaluations_entraineur'] . "</td>";
-                echo "<td><input type='checkbox' name='joueur_titulaire[]' value='" . $data['id'] . "'> Titulaire</td>";
+                echo "<td>" . $data['Nom'] . "</td>";
+                echo "<td>" . $data['Prenom'] . "</td>";
+                echo "<td>" . $data['Photo'] . "</td>";
+                echo "<td>" . $data['Taille'] . "</td>";
+                echo "<td>" . $data['Poids'] . "</td>";
+                echo "<td>" . $data['Poste_pref'] . "</td>";
+                echo "<td>" . $data['Commentaire'] . "</td>";?>
+                <html><td><input type='checkbox' name='' value='" . $data['id'] . "'> Titulaire<input type='checkbox' name='' value='" . $data['id'] . "'> Remplaçant</td></html>
+                <?php
                 echo "</tr>";
             }
-            if(isset($_POST['update'])) {
-                $photo = $_POST["Photo"];
-                $dateNaissance = $_POST["DateNaissance"];
-                $taille = $_POST["Taille"];
-                $poids = $_POST["Poids"];
-                $Poste_pref = $_POST["Poste_pref"];
-                $statut = $_POST["Statut"];
-                $commentaire = $_POST["Commentaire"];
     ?>
             </table>
-    <input type="submit" value="Valider la sélection" id="submit-button">
+    <button type="submit" value="Valider la sélection">Valider la selection</button>
 </form>
-
-<?php 
-if
-      
-
 <style>
-    form {
-    width: 300px;
-    margin: 0 auto;
+table {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #dddddd;
+}
+
+.center {
     text-align: center;
 }
 
-input[type="text"], input[type="date"], input[type="int"] {
+input[type="text"] {
     width: 100%;
-    padding: 12px 20px;
+    /* padding: 12px 20px; */
     margin: 8px 0;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
 }
 
-input[type="text"]:focus, input[type="date"]:focus, input[type="int"]:focus {
-    border: 2px solid #555;
-}
-
 button[type="submit"] {
-    width: 100%;
-    background-color: #4CAF50;
+    /* width: 100%; */
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
+    background-color: #4CAF50;
+    /* cursor: pointer; */
 }
 
-button:hover {
+button[name="update"] {
+    background-color: #4CAF50;
+}
+
+button[name="delete"] {
+    background-color: #f44336;
+}
+button[name="delete"]:hover {
+    background-color: #9b1107;
+}
+
+button[name="update"]:hover {
     background-color: #45a049;
 }
-
 </style>
