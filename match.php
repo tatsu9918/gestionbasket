@@ -11,13 +11,14 @@ try {
     Heure du match <input type="time" name="Heure" placeholder="Heure du match" /><br />
     <input type="text" name="Lieu" placeholder="Lieu du match" /><br />
     <input type="text" name="NomEquipeAdverse" placeholder="NomEquipeAdverse" /><br />
-    <input id="domicile" type="checkbox" name="Domicile" value=1>
+    <input type="hidden" name="Domicile" value=0 >
+    <input id="domicile" type="checkbox" name="Domicile" value=1 >
     <label for="domicile">Domicile</label>
     <button type="submit" value="Envoyer">Envoyer</button>
 </form>
 </html>
 <?php
-if (isset($_POST["Date"]) && isset($_POST["Heure"]) && isset($_POST["Lieu"]) && isset($_POST["NomEquipeAdverse"]) && isset($_POST["Domicile"])) {
+if (isset($_POST["Date"]) && isset($_POST["Heure"]) && isset($_POST["Lieu"]) && isset($_POST["NomEquipeAdverse"])&& isset($_POST["Domicile"])){
     $date = $_POST["Date"];
     $heure = $_POST["Heure"];
     $lieu = $_POST["Lieu"];
