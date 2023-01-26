@@ -11,7 +11,7 @@ try {
     <input type="text" name="Prenom" placeholder="Prénom" /><br />
     <input type="text" name="Photo" placeholder="Photo" /><br />
     <input type="text" name="NumLicence" placeholder="Numéro de Licence" /><br />
-    <input type="date" name="DateNaissance" placeholder="Date de Naissance" /><br />
+    Date de Naissance <input type="date" name="DateNaissance" placeholder="Date de Naissance" /><br />
     <input type="int" name="Taille" placeholder="Taille" /><br />
     <input type="int" name="Poids" placeholder="Poids" /><br />
     <input type="text" name="Poste_pref" placeholder="Poste" /><br />
