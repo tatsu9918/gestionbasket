@@ -5,88 +5,91 @@
          die('Error : ' . $e->getMessage());
         }
 ?>
-<table border="1">
-    <tr>
-        <th>Photo</th>
-        <th>Taille</th>
-        <th>Poids</th>
-        <th>Poste préféré</th>
-        <th>Statut</th>
-        <th>Commmentaire</th>
-        <th>Evaluations de l'entraineur</th>
-        <th>Actions</th>  
-    </tr>
-<?php
-    // Sélection des joueurs actifs
-    $res= $linkpdo->prepare("SELECT * FROM joueurs WHERE STATUT=1");
-        $res->execute();
-        while ($data = $res->fetch())
-?>
-    while($data = $res->fetch()) {
-        echo"<td> . $data['photo'] .  </td>
-        echo"<td> . $data['photo'] .  </td>
-        echo"<td> . $data['photo'] .  </td>
-        echo"<td> . $data['photo'] .  </td>
-        echo"<td> . $data['photo'] .  </td>
-        echo"<td> . $data['photo'] .  </td>
-        echo"<td> . $data['photo'] .  </td>
-    }
+<form action="update_roles.php" method="post">
+    <table border="1">
+        <tr>
+            <th>Photo</th>
+            <th>Taille</th>
+            <th>Poids</th>
+            <th>Poste préféré</th>
+            <th>Statut</th>
+            <th>Commmentaire</th>
+            <th>Evaluations de l'entraineur</th>
+            <th>Actions</th>  
+        </tr>
+        <?php
+            // Sélection des joueurs actifs
+            $res= $linkpdo->prepare("SELECT * FROM joueurs WHERE STATUT=1");
+            $res->execute();
+            while ($data = $res->fetch()) {
+                echo "<tr>";
+                echo "<td>" . $data['photo'] . "</td>";
+                echo "<td>" . $data['taille'] . "</td>";
+                echo "<td>" . $data['poids'] . "</td>";
+                echo "<td>" . $data['poste_prefere'] . "</td>";
+                echo "<td>" . $data['statut'] . "</td>";
+                echo "<td>" . $data['commentaire'] . "</td>";
+                echo "<td>" . $data['evaluations_entraineur'] . "</td>";
+                echo "<td><input type='checkbox' name='joueur_titulaire[]' value='" . $data['id'] . "'> Titulaire</td>";
+                echo "</tr>";
+            }
+            </table>
+    <input type="submit" value="Valider la sélection" id="submit-button">
+</form>
 
+<script>
+    // Nombre minimum de joueurs requis
+    var minPlayers = 5;
+
+    function validateForm() {
+        var selectedPlayers = document.querySelectorAll('input.checked').length;
+        if (selectedPlayers < minPlayers) {
+        alert('Vous devez sélectionner au moins ' + minPlayers + ' joueurs.');
+        return false;
+        } else {
+        return true;
+        }
+        }
         
-
+        Copy code
+        var submitButton = document.getElementById('submit-button');
+        submitButton.addEventListener('click', validateForm);
+</script>
+      
 
 <style>
-table {
-    width: 100%;
-    font-family: Arial, sans-serif;
-    border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-th {
-    background-color: #dddddd;
-}
-
-.center {
+    form {
+    width: 300px;
+    margin: 0 auto;
     text-align: center;
 }
 
-input[type="text"] {
+input[type="text"], input[type="date"], input[type="int"] {
     width: 100%;
-    /* padding: 12px 20px; */
+    padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
 }
 
+input[type="text"]:focus, input[type="date"]:focus, input[type="int"]:focus {
+    border: 2px solid #555;
+}
+
 button[type="submit"] {
     width: 100%;
+    background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
-    /* cursor: pointer; */
+    cursor: pointer;
 }
 
-button[name="update"] {
-    background-color: #4CAF50;
-}
-
-button[name="delete"] {
-    background-color: #f44336;
-}
-button[name="delete"]:hover {
-    background-color: #9b1107;
-}
-
-button[name="update"]:hover {
+button:hover {
     background-color: #45a049;
 }
+
 </style>
