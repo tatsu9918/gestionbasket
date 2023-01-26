@@ -33,28 +33,21 @@
                 echo "<td><input type='checkbox' name='joueur_titulaire[]' value='" . $data['id'] . "'> Titulaire</td>";
                 echo "</tr>";
             }
+            if(isset($_POST['update'])) {
+                $photo = $_POST["Photo"];
+                $dateNaissance = $_POST["DateNaissance"];
+                $taille = $_POST["Taille"];
+                $poids = $_POST["Poids"];
+                $Poste_pref = $_POST["Poste_pref"];
+                $statut = $_POST["Statut"];
+                $commentaire = $_POST["Commentaire"];
+    ?>
             </table>
     <input type="submit" value="Valider la sélection" id="submit-button">
 </form>
 
-<script>
-    // Nombre minimum de joueurs requis
-    var minPlayers = 5;
-
-    function validateForm() {
-        var selectedPlayers = document.querySelectorAll('input.checked').length;
-        if (selectedPlayers < minPlayers) {
-        alert('Vous devez sélectionner au moins ' + minPlayers + ' joueurs.');
-        return false;
-        } else {
-        return true;
-        }
-        }
-        
-        Copy code
-        var submitButton = document.getElementById('submit-button');
-        submitButton.addEventListener('click', validateForm);
-</script>
+<?php 
+if
       
 
 <style>
