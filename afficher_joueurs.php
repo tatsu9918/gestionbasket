@@ -86,7 +86,20 @@ try {
         $taille = $_POST["Taille"];
         $poids = $_POST["Poids"];
         $Poste_pref = $_POST["Poste_pref"];
-        $statut = $_POST["Statut"];
+        switch ($_POST["Statut"]) {
+            case "Actif":
+                $statut = 1;
+                break;
+            case "Blessé":
+                $statut = 2;
+                break;
+            case "Suspendu":
+                $statut = 3;
+                break;
+            case "Absent":
+                $statut = 4;
+                break;
+        }
         $commentaire = $_POST["Commentaire"];
         $res = $linkpdo->prepare('UPDATE joueurs SET Nom = :nom, Prenom = :prenom, Photo = :photo, NumLicence = :numLicence, DateNaissance = :dateNaissance, Taille = :taille, Poids = :poids, Poste_pref = :Poste_pref, Statut = :statut, Commentaire = :commentaire WHERE NumLicence = :numLicence');
         $res->bindParam(':nom', $nom);
