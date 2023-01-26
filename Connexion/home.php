@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -10,7 +9,7 @@ try {
 
 // Vérification de la connexion de l'utilisateur
 if (!isset($_SESSION['logged_in'])) {
-    header('Location: login.php');
+    header('Location:authentification.php');
 }
 ?>
 <!DOCTYPE html>
@@ -21,7 +20,6 @@ if (!isset($_SESSION['logged_in'])) {
 <body>
     <?php include 'menu.php'; ?>
     <h1>Bienvenue sur la page d'accueil</h1>
-    <p>Contenu de la page</p>
 </body>
 </html>
 

@@ -29,7 +29,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 // Affichage du formulaire de connexion
 if (!isset($_SESSION['logged_in'])) {
-    echo '
+    echo ' 
     <form action="login.php" method="post">
         <label for="username">Nom d\'utilisateur :</label>
         <input type="text" id="username" name="username" required>
