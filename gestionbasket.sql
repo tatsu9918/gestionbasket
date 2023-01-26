@@ -96,6 +96,14 @@ INSERT INTO `matchs` (`Id_Match`, `Date`, `Heure`, `Lieu`, `NomEquipeAdverse`, `
 (19, '2023-01-06', '18:37:00', 'toulouse', 'les bulls', 0, 100, 92);
 COMMIT;
 
+DROP  TABLE  IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
