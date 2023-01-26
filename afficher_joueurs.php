@@ -90,6 +90,7 @@
             echo "La requête a été exécutée avec succès";
             header('Location: ' . $_SERVER['PHP_SELF']);
             } else {
+            $res->DebugDumpParams();
             echo "La requête n'a pas été exécutée avec succès";
             }
             }
@@ -101,6 +102,7 @@
             echo "La requête a été exécutée avec succès";
             header('Location: ' . $_SERVER['PHP_SELF']);
             } else {
+            $res->DebugDumpParams();
             echo "La requête n'a pas été exécutée avec succès";
             }
             }
