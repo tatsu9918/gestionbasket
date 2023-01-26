@@ -13,13 +13,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-    $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-    $result = $db->query($query);
+    $query = $linkpdo->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+    $query->execute(array(':username' => $username, ':password' => $password));
+    $result = $query->fetch();
     
-    if ($result->num_rows > 0) {
+    if ($result) {
         // L'utilisateur est connecté
         $_SESSION['logged_in'] = true;
-        header('Location: /home.php');
+        header('location:home.php');
     } else {
         // Les informations d'authentification sont incorrectes
         echo 'Informations d\'authentification incorrectes';
@@ -28,7 +29,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 // Affichage du formulaire de connexion
 if (!isset($_SESSION['logged_in'])) {
-    echo '
+    echo ' 
     <form action="login.php" method="post">
         <label for="username">Nom d\'utilisateur :</label>
         <input type="text" id="username" name="username" required>
