@@ -10,7 +10,7 @@ try {
 
 // Vérification de la connexion de l'utilisateur
 if (!isset($_SESSION['logged_in'])) {
-    header('Location: /login.php');
+    header('Location: login.php');
 }
 ?>
 <!DOCTYPE html>
