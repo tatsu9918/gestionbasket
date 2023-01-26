@@ -15,7 +15,14 @@ try {
     <input type="int" name="Taille" placeholder="Taille" /><br />
     <input type="int" name="Poids" placeholder="Poids" /><br />
     <input type="text" name="Poste_pref" placeholder="Poste" /><br />
-    <input type="int" name="Statut" placeholder="Statut" /><br />
+    <label for="choix_statut">Choisissez un statut:</label>
+
+<select name="Statut" id="choix_statut">
+    <option value="1">Actif</option>
+    <option value="2">Blessé</option>
+    <option value="3">Suspendu</option>
+    <option value="4">Absent</option>
+</select>
     <input type="text" name="Commentaire" placeholder="Commentaire" /><br />
     <button type="submit" value="Envoyer">Envoyer</button>
 </form>
