@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 26 jan. 2023 à 00:00
+-- Généré le : jeu. 26 jan. 2023 à 17:16
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -53,18 +53,17 @@ CREATE TABLE IF NOT EXISTS `joueurs` (
   `DateNaissance` date DEFAULT NULL,
   `Taille` decimal(15,2) DEFAULT NULL,
   `Poids` decimal(15,2) DEFAULT NULL,
-  `Poste_pref` text NOT NULL,
+  `Poste_pref` text,
   `Statut` smallint(6) DEFAULT NULL,
-  `Commentaire` text NOT NULL,
+  `Commentaire` text,
   PRIMARY KEY (`Id_Joueurs`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `joueurs`
 --
 
 INSERT INTO `joueurs` (`Id_Joueurs`, `Nom`, `Prenom`, `Photo`, `NumLicence`, `DateNaissance`, `Taille`, `Poids`, `Poste_pref`, `Statut`, `Commentaire`) VALUES
-(18, 'Pomies', 'Guillaume', 'test', '56156', '2023-01-20', '194.00', '92.00', 'Pivot', 1, 'Ã§a va'),
 (25, 'Clotaire', 'Sylvestre', 'test', '648849', '2002-02-24', '181.00', '70.00', 'Ailier', 1, 'test'),
 (26, '2eme', 'Clodomir', 'test', '46584654564', '0495-11-06', '160.00', '70.00', 'Roi', 1, 'test');
 
@@ -76,13 +75,25 @@ INSERT INTO `joueurs` (`Id_Joueurs`, `Nom`, `Prenom`, `Photo`, `NumLicence`, `Da
 
 DROP TABLE IF EXISTS `matchs`;
 CREATE TABLE IF NOT EXISTS `matchs` (
-  `Id_Matchs` int(11) NOT NULL AUTO_INCREMENT,
-  `DateM` date DEFAULT NULL,
+  `Id_Match` int(11) NOT NULL AUTO_INCREMENT,
+  `Date` date DEFAULT NULL,
+  `Heure` time DEFAULT NULL,
   `Lieu` varchar(50) DEFAULT NULL,
-  `Resultat` varchar(50) DEFAULT NULL,
   `NomEquipeAdverse` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Id_Matchs`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Domicile` tinyint(1) DEFAULT NULL,
+  `ScoreE` int(50) DEFAULT NULL,
+  `ScoreA` int(50) DEFAULT NULL,
+  PRIMARY KEY (`Id_Match`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `matchs`
+--
+
+INSERT INTO `matchs` (`Id_Match`, `Date`, `Heure`, `Lieu`, `NomEquipeAdverse`, `Domicile`, `ScoreE`, `ScoreA`) VALUES
+(17, '2023-01-06', '19:24:00', 'Moselle', 'Les nets', 1, NULL, NULL),
+(20, '2023-01-04', '19:39:00', 'toulouse', 'les hornets', 0, NULL, NULL),
+(19, '2023-01-06', '18:37:00', 'toulouse', 'les bulls', 0, 100, 92);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
